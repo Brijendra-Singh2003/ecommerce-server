@@ -6,7 +6,7 @@
   "type": "module",
   "scripts": {
     "start": "node ./build/app.js",
-    "build": "tsc && prisma generate",
+    "build": "prisma generate && tsc",
     "watch": "tsc --watch",
     "dev": "nodemon ./build/app.js"
   },
