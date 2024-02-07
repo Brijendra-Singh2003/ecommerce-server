@@ -31,14 +31,14 @@ cartRouter.delete("/:id", async (req, res) => {
 });
 
 cartRouter.post("/:id", async (req, res) => {
-    const user = req.user as User;
+    const { id } = req.user as User;
     const productId = +req.params.id;
 
-    if (!productId || !user) {
-        return res.status(401).send("missing required feilds");
+    if (!productId || !id) {
+        return res.status(401).send(`missing required feilds\nuserid: ${id}\nproductId: ${productId}`);
     }
 
-    const item = { productId, userId: user.id };
+    const item = { productId, userId: id };
     const dbItem = await getItem(item);
 
     if (dbItem) {
