@@ -21,7 +21,7 @@ authRouter.get("/signout", (req, res) => {
   req.logout(() => {
     console.log(req.user, " logged out");
   });
-  res.redirect("/");
+  res.redirect(process.env.CLIENT_URL || "/");
 });
 
 authRouter.get("/user", (req, res) => {
