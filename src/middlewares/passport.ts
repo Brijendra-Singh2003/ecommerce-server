@@ -29,6 +29,7 @@ passport.serializeUser(async (user: any, done) => {
 
 // Deserialize user from the session
 passport.deserializeUser((user: any, done) => {
+    console.log("deserializeUser: ", user);
     done(null, user);
 });
 
