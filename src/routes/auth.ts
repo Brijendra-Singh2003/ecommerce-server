@@ -11,7 +11,7 @@ authRouter.get(
 authRouter.get(
   "/google/callback",
   passport.authenticate("google", {
-    failureRedirect: "/failure",
+    failureRedirect: process.env.CLIENT_URL || "http://localhost:3000",
     successRedirect: process.env.CLIENT_URL || "http://localhost:3000",
     session: true,
   })
