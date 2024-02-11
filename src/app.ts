@@ -15,7 +15,8 @@ import { prisma } from "./db/demo.js";
 const app = express();
 
 app.use(cors({
-  origin: [process.env.CLIENT_URL || "*", "http://localhost:3000"],
+  origin: "*",
+  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
   credentials: true,
 }));
 
