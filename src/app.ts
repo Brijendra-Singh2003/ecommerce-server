@@ -15,7 +15,7 @@ import { prisma } from "./db/demo.js";
 const app = express();
 
 app.use(cors({
-  origin: [process.env.CLIENT_URL || "http://localhost:3000", "http://localhost:3000"],
+  origin: [process.env.CLIENT_URL || "*", "http://localhost:3000"],
   credentials: true,
 }));
 
@@ -59,10 +59,12 @@ app.get("/failure", (req, res) => {
   res.send("failed to log in!");
 });
 
+const port = Number.parseInt(process.env.PORT || "3000");
+
 async function start() {
   await prisma.$connect();
-  app.listen(4000, () => {
-    console.log("server listning at \n http://localhost:4000/");
+  app.listen(port, () => {
+    console.log("server listning at port " + port);
   });
 }
 
