@@ -12,7 +12,7 @@ authRouter.get(
   "/google/callback",
   passport.authenticate("google", {
     failureRedirect: "/failure",
-    successRedirect: "http://localhost:3000/",
+    successRedirect: process.env.CLIENT_URL || "http://localhost:3000",
     session: true,
   })
 );
@@ -21,7 +21,7 @@ authRouter.get("/signout", (req, res) => {
   req.logout(() => {
     console.log(req.user, " logged out");
   });
-  res.redirect(process.env.CLIENT_URL || "/");
+  res.redirect(process.env.CLIENT_URL || "http://localhost:3000");
 });
 
 authRouter.get("/user", (req, res) => {

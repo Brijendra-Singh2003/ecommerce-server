@@ -11,6 +11,10 @@ cartRouter.get("/", async (req, res) => {
         // console.log(userCarts);
         return res.json(userCarts?.cart);
     }
+    return res.status(400).json({});
+});
+
+cartRouter.get("/all", async (req, res) => {
     const carts = await getCarts();
     return res.json(carts);
 });
