@@ -38,6 +38,10 @@ app.get("/failure", (req, res) => {
   res.send("failed to log in!");
 });
 
+app.get("/", (req, res) => {
+  res.send("Hello World!");
+});
+
 const port = Number.parseInt(process.env.PORT || "3000");
 
 async function start() {
