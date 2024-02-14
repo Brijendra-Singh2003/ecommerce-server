@@ -6,10 +6,9 @@
   "type": "module",
   "scripts": {
     "start": "node ./build/app.js",
-    "build": "tsc",
+    "build": "prisma generate && tsc",
     "watch": "tsc --watch",
-    "dev": "nodemon ./build/app.js",
-    "generate": "yarn prisma generate"
+    "dev": "nodemon ./build/app.js"
   },
   "author": "",
   "license": "ISC",
@@ -24,8 +23,7 @@
     "express-session": "^1.17.3",
     "mongoose": "^8.0.3",
     "passport": "^0.5.3",
-    "passport-google-oauth20": "^2.0.0",
-    "yarn": "^1.22.21"
+    "passport-google-oauth20": "^2.0.0"
   },
   "devDependencies": {
     "@types/cookie-session": "^2.0.48",
