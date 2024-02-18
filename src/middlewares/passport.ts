@@ -18,12 +18,12 @@ passport.use(
 );
 
 passport.serializeUser(async (user: any, done) => {
-    const { sub, name, email, image } = user._json;
+    const { sub, name, email, picture } = user._json;
     const dbuser = await AddUser({
         name: name,
         email: email,
         id: sub,
-        image: image
+        image: picture
     });
     done(null, dbuser);
 });
