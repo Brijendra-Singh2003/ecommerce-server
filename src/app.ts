@@ -12,14 +12,14 @@ import cartRouter from "./routes/cart.js";
 import categoryRouter from "./routes/category.js";
 import { prisma } from "./db/demo.js";
 
-const corsOptions: cors.CorsOptions | cors.CorsOptionsDelegate<cors.CorsRequest> = {
-  origin: process.env.CLIENT_URL || "*",
-  methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
-  credentials: true,
-};
+// const corsOptions: cors.CorsOptions | cors.CorsOptionsDelegate<cors.CorsRequest> = {
+//   origin: process.env.CLIENT_URL || "*",
+//   methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+//   credentials: true,
+// };
 const app = express();
 
-app.use(cors(corsOptions));
+app.use(cors({ credentials: true }));
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
