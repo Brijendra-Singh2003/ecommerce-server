@@ -5,7 +5,7 @@ const key = new TextEncoder().encode(process.env.AUTH_SECRET_1);
 
 export const getSession = async (req: Request): Promise<cookieUser> => {
     try {
-        const token = req.cookies["authjs.session-token"];
+        const token = req.cookies["__Secure-authjs.session-token"];
         const { payload } = await jwtVerify(token, key, { algorithms: ["HS256"] });
         return {
             name: payload.name as string,

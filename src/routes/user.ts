@@ -19,7 +19,7 @@ userRouter.get("/products", async (req, res) => {
 
 userRouter.get("/", async (req, res) => {
     const user = await getSession(req);
-    console.log("Profile", user);
+    console.log("Profile: ", user);
     if (user) {
         const profile = await getProfile(user.id);
         return res.json(profile);
