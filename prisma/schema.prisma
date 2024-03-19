@@ -17,8 +17,8 @@ model Address {
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
   name      String   @db.VarChar(255)
-  phone     Int
-  pincode   Int
+  phone     String
+  pincode   String
   locality  String
   address   String
   city      String

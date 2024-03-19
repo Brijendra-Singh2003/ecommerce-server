@@ -1,4 +1,3 @@
-import { Item } from "@prisma/client";
 import { prisma } from "./demo.js";
 
 export async function getCarts() {
@@ -11,11 +10,11 @@ export async function getCarts() {
     }
 }
 
-export async function getCartSize(id: string) {
+export async function getCartSize(userId: string) {
     try {
         const count = await prisma.item.count({
             where: {
-                userId: id
+                userId
             }
         });
         return count;
@@ -29,6 +28,18 @@ export async function addItem(newItem: new_item) {
     try {
         return await prisma.item.create({
             data: newItem
+        })
+    } catch (error: any) {
+        console.log(error.message);
+        return {};
+    }
+}
+
+export async function updateItem(id: number, quantity: number) {
+    try {
+        return await prisma.item.update({
+            where: { id },
+            data: { quantity }
         })
     } catch (error: any) {
         console.log(error.message);

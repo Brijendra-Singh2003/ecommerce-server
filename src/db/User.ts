@@ -2,13 +2,6 @@ import { Prisma, Profile } from "@prisma/client"
 import { prisma } from "./demo.js"
 import { DefaultArgs } from "@prisma/client/runtime/library.js"
 
-type user = {
-    id: string;
-    email: string;
-    name: string | null | undefined;
-    image?: string | null | undefined;
-}
-
 export async function getAllUsers() {
     try {
         return await prisma.user.findMany();
@@ -27,7 +20,14 @@ export async function getUserById(id: string) {
     }
 }
 
-export async function AddUser(user: user) {
+type newUser = {
+    name: string,
+    email: string,
+    id: string;
+    image: string;
+}
+
+export async function AddUser(user: newUser) {
     try {
         const new_user = await prisma.user.upsert({
             where: {

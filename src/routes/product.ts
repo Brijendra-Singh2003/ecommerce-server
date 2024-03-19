@@ -3,17 +3,21 @@ import { addProduct, category, getProductById, getProductBySearch, getProductsBy
 import { Image, User } from "@prisma/client";
 import { addImage } from "../db/image.js";
 import ExpressFormidable from "express-formidable";
+import { getSession } from "../middlewares/mySession.js";
 const ProductRouter = express.Router();
 
 ProductRouter.get("/", async (req, res) => {
     const page = req.query.page ? +req.query.page : 0;
-    const products = await getProductsByCategory(req.query.category as category, page);
+    const products = await getProductsByCategory(req.query.category as category);
     res.json(products);
 })
 
 ProductRouter.post("/", ExpressFormidable(), async (req, res) => {
     console.log("body: ", req.fields);
-    const user = req.user as User;
+    const user = await getSession(req);
+    if (!user) {
+        return res.sendStatus(401);
+    }
     console.log(user);
     // return res.sendStatus(200);
     const formData = req.fields as unknown as newProductFormData;

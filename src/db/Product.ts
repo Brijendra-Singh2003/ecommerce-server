@@ -22,7 +22,7 @@ export async function addProduct(product: newProduct) {
     }
 }
 
-export async function getProductsByCategory(category: category, pageNo = 0, productPerPage = 10) {
+export async function getProductsByCategory(category: category) {
     try {
         const products = await prisma.product.findMany({
             where: {
@@ -30,8 +30,13 @@ export async function getProductsByCategory(category: category, pageNo = 0, prod
                     name: category
                 }
             },
-            skip: productPerPage * pageNo,
-            take: productPerPage
+            select: {
+                id: true,
+                name: true,
+                price: true,
+                discount: true,
+                imageUrl: true,
+            }
         });
         return products;
     } catch (error: any) {

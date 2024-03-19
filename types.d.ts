@@ -47,3 +47,10 @@ type newProduct = {
     imageId: string;
     userId: string;
 }
+
+type cookieUser = {
+    name: string;
+    email: string;
+    image: string;
+    id: string;
+} | undefined;
